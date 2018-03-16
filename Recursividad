@@ -1,0 +1,145 @@
+#include "stdafx.h"
+#include "iostream"
+using namespace std;
+//TEMA RECURSIVIDAD: Manejo de numeros
+//Mostrar los n primeros numeros naturales impares
+void mostrarImpares(int n)
+{
+  if(n==1)
+    cout<<1<<" ";  
+  else
+  {
+    mostrarImpares(n-1);	
+	  if(n % 2==1)
+		cout<<n<<" ";	
+  }
+}
+
+//Mostrar los n primeros numeros pares
+void mostrarPares(int n)
+{
+  if(n==0)
+  {}  
+  else
+  {
+     mostrarImpares(n-1);	
+     if(n % 2==0)
+		cout<<n<<" ";	
+  }
+}
+
+//Mostrar los n elementos de la sgte serie:
+//Ejemplo: n=4      1!  2!  3!  4!
+
+
+
+
+
+//Mostrar los n primeros elementos de la sgte serie:
+// 1!/1^2   2!/2^2   3!/3^3 ....
+int factorial(int n)
+{
+   if(n==0)
+	   return 1;
+   else
+   {
+	  int f=factorial(n-1);
+	  return f*n;
+   }
+}
+
+int potencia(int x,int y)
+{
+   if(y==0)
+	   return 1;
+   else
+   {
+	 int a=potencia(x,y-1);
+	 return a*x;
+   }
+}
+
+//Mostrar la suma de n elementos de la sgte serie:
+//Ejemplo: n=4      1^1   2^2   3^3  4^4
+//         Resultado: 78
+
+int serie(int n)
+{
+  if(n==0)
+	  return 0;
+  else
+  {
+     int s=serie(n-1);
+	 return s + potencia(n,n);
+  }
+}
+
+
+//Mostrar la suma de los digitos de un numero
+//Ejemplo 4123    la suma es:10
+
+int sumaDigitos(int num)
+{
+    if(num < 10)
+    	return num;  //Caso base
+	else
+	{
+       int x=sumaDigitos(num/10); //Hipotesis inductiva
+	   return x + num % 10;
+	}
+}
+
+//Mostrar el digito menor de un numero
+//Ejemplo:  num=7294      R.- 2
+
+int digitoMenor(int num)
+{
+    if(num < 10)
+    	return num;  //Caso base
+	else
+	{
+       int x=digitoMenor(num/10); //Hipotesis inductiva
+	   if(x < num%10)
+		  return x;
+	   else
+	      return num%10;
+	}
+}
+
+//Suma de los digitos pares de un numero
+//Ejemplo:  num=5218    R.-10
+int sumaDigitosPares(int num)
+{
+    if(num < 10)
+	{
+	  if(num % 2==0)
+		  return num;
+	  else
+		  return 0;
+	}
+	else
+	{
+       int x=sumaDigitosPares(num/10); //Hipotesis inductiva
+	   if( (num %10)% 2==0 )
+		   return x + num % 10;
+	   else
+		   return x;
+	}
+}
+
+
+
+
+
+
+
+
+
+void main()
+{
+  int n,x;
+  cout<<"Leer n:";
+  cin>>n;
+  x=serie(n);
+  cout<<x;
+}

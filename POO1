@@ -1,0 +1,76 @@
+
+#include "stdafx.h"
+#include "iostream"
+#include "math.h"
+using namespace std;
+
+class punto
+{
+private :
+	int x;
+	int y;
+public:
+ punto()
+ {
+	 x=0;
+	 y=0;
+ }
+//metodos setters (ponedoras)
+ void setX(int a)
+ {  x=a; }
+ void setY(int b)
+ {  y=b; }
+//metodos getters (selectoras)
+ int getX()
+ {return x;}
+
+ int getY()
+ {return y;}
+ 
+ //metodos de la clase
+ float distancia(punto p1)
+ {
+    int a1=p1.getX();
+	int b1=p1.getY();
+    int a2=getX();
+    int b2=getY();
+    return sqrtf( (a2-a1)*(a2-a1) + (b2-b1)*(b2-b1));
+ }
+
+ bool verificarCuadrado(punto p1, punto p2,punto p3)
+ {
+    
+ }
+ 
+ //verificar si 2 puntos forman una linea vertical 
+ //u horizontal
+ void verificarLinea(punto p1)
+ {
+   
+ }
+
+};
+
+void main()
+{
+   int a,b;
+   punto p1,p2,p3;   
+   cout<<"Introduzca un punto 1"<<endl;
+   cout<<"X=";
+   cin>>a; 
+   p1.setX(a);
+   cout<<"Y=";
+   cin>>b; 
+   p1.setY(b);
+   cout<<"Introduzca un punto 2"<<endl;
+   cout<<"X=";
+   cin>>a; 
+   p2.setX(a);
+   cout<<"Y=";
+   cin>>b; 
+   p2.setY(b);
+
+   float d=p2.distancia(p1);
+   cout<<"La dintancia es:"<<d;
+
+}

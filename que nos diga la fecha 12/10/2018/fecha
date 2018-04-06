@@ -1,0 +1,85 @@
+// dias del mes.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+
+using namespace std;
+
+const int diaMes[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+class fecha{
+private:
+ int dia;
+ int mes;
+ int anho;
+
+public:
+ fecha() {
+   dia=mes=anho=0;   
+ }
+
+ void setDia(int d)
+ { dia=d; }
+ 
+ int getDia()
+ { return dia; }
+
+ void setMes(int m)
+ { mes=m; }
+ 
+ int getMes()
+ { return mes; }
+
+ void setAnho(int a)
+ { anho=a; }
+ 
+ int getAnho()
+ { return anho; }
+  void leer ()
+  { int d,n,a;
+  cout<<"dia:";
+  cin>>d;
+  dia=d;
+  cout<<"mes:";
+  cin>>mes;
+  cout<<"anho:";
+  cin>>a;
+  anho=a;
+  }
+  void mostrar ()
+  {cout<<dia<<"/"<<mes<<"/"<<anho;
+  }
+  bool validar ()
+  {
+	  if (dia>diaMes[mes]||mes>12 || anho<=0)
+		  return false;
+	  else
+		  return true;
+
+  }
+
+
+  void manhana ();
+
+ 
+}; //fin clase
+void fecha ::manhana()
+{
+}
+
+void main()
+{
+	fecha f1;
+	f1.leer();
+	f1.mostrar();
+	if (f1.validar ())
+		cout<<"Fecha valida ";
+	else
+		 cout << "Fecha incorrecta";
+	
+	getche();
+}
+
+
+
+

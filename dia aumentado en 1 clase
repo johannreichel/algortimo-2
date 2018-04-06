@@ -1,5 +1,3 @@
-// dias del mes.cpp : Defines the entry point for the console application.
-//
 #include "stdafx.h"
 #include "iostream"
 #include "conio.h"
@@ -35,58 +33,81 @@ public:
  
  int getAnho()
  { return anho; }
-  void leer ()
-  { int d,n,a;
-  cout<<"dia:";
-  cin>>d;
-  dia=d;
-  cout<<"mes:";
-  cin>>mes;
-  cout<<"anho:";
-  cin>>a;
-  anho=a;
-  }
-  void mostrar ()
-  {cout<<dia<<"/"<<mes<<"/"<<anho;
-  }
-  bool validar ()
-  {
-	  if (dia>diaMes[mes]||mes>12 || anho<=0)
-		  return false;
-	  else
-		  return true;
-
-  }
-
-  void manhana ()
-  {
-
-
-  }
+ void leer()
+{	
+	cout<<"dia:";
+    cin>>dia;
+	
+	cout<<"mes:";
+    cin>>mes;
+	
+	cout<<"anho:";
+    cin>>anho;
+	
+	
+}  
+ void mostrar()
+ { cout<<dia<<"/"<<mes<<"/"<<anho;
+ }
  
-}; //fin clase
-void fecha ::manhana()
+ bool validar()
+ {
+    if(dia>diaMes[mes]||mes>12||anho<=0)
+		return false;
+	else 
+		return true;
+ }
+
+ void manhana();
+ void menor(fecha f1);
+
+};//fin clase
+
+void fecha::manhana()
 {
-	if ((dia+1)>diaMes [mes])
+	if((dia+1)>diaMes[mes])
 	{
-		dia =1;
-			if ((mes +1)>12)
-			{
-				mes=1;
-					anho=anho+1;
-			}
-			else mes=mes+1;
+	    dia=1;
+		if ((mes+1)>12)
+		{
+			mes=1;
+			anho=anho+1;
+		}
+		else 
+			mes=mes+1;
 	}
-	else dia=dia+1;
+	else 
+		dia=dia+1;
 }
 
+void fecha::menor(fecha f1)
+{
+	if(getAnho()<=anho && getMes()<=mes && getDia()<=dia)
+		mostrar();
+	else
+	{
+		f1.mostrar();
+	}
+}
 
 
 void main()
 {
-	fecha f1;
+	fecha f1,f2;
 	f1.leer();
-	f1.manhana();
-	f1.mostrar();
+	f2.leer();
+	f2.menor(f1);
+	//f1.mostrar();
+	//if(f1.validar())
+	//cout<<"fecha valida:";
+	//else
+	//cout<<"fecha incorrecta:";
+	//f1.manhana();
+
 	getche();
 }
+
+
+ 
+
+

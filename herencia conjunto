@@ -1,0 +1,86 @@
+// classVector.cpp: define el punto de entrada de la aplicación de consola.
+
+#include "stdafx.h"
+#include "iostream"
+#include "vector.h"
+#include <conio.h>
+
+
+using namespace std;
+
+class conjunto: public vector
+{	
+  public:	
+	void Interseccion(conjunto A,conjunto B);	
+	bool pertenece(int x);
+	bool subconjunto(conjunto A);
+	bool verificarIguales(conjunto A);
+	void Diferencia (conjunto A,conjunto B); 
+};
+
+
+bool conjunto::pertenece(int x){
+  int i=0;
+  while(i < n ){
+     if(x==v[i])
+		 return true;
+	 else
+		 i=i+1;
+  }
+  return false;
+}
+
+
+void conjunto::Interseccion(conjunto A,conjunto B)
+{
+	for(int i=0; i < A.getDim(); i++)
+	{
+	   if(B.pertenece(A.getElem(i)))
+		   insertarUlt(A.getElem(i));
+	}
+}
+bool conjunto:: subconjunto(conjunto A)
+{
+	int i=0;
+	while(i<A.getDim())
+	{
+		if(! pertenece (A.getElem(i)))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool conjunto:: verificarIguales(conjunto A)
+{
+	return subconjunto(A) && A.subconjunto(*this);
+}
+
+void conjunto::Diferencia (conjunto A,conjunto B)
+{
+	for(int i=0; i < A.getDim(); i++)
+	{
+	   if(!B.pertenece(A.getElem(i)))
+		   insertarUlt(A.getElem(i));
+	}
+}
+
+	
+
+void main()
+{
+	conjunto A,B,C;
+
+	A.leer();
+
+	B.leer();
+
+	C.Diferencia(A,B);
+	cout<<endl<<"A-B="<<endl;
+	C.imprimir();
+
+	getch();
+
+		
+
+}

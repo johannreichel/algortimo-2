@@ -1,0 +1,93 @@
+//Recta
+#include "punto.h"
+
+class recta{
+private:
+	punto p1;
+	punto p2;
+public:
+	void leer()
+	{
+	  cout<<"Ingresar dos puntos"<<endl;
+	  p1.leer();
+	  p2.leer();
+	}
+	void mostrar()
+	{
+	  cout<<"Recta definida por dos puntos"<<endl;
+	  p1.mostrar();
+	  p2.mostrar();
+	}
+
+	bool horizontal()
+	{ return p1.getY()==p2.getY(); }	
+	double pendiente ()
+	{
+		int x1=p1.getX();
+		int y1=p1.getY();
+		int x2=p2.getX();
+		int y2=p2.getY();
+	
+
+
+};
+//PUNTO
+#include "iostream"
+#include"math.h"
+
+using namespace std;
+
+class punto{
+private:
+	int x,y;
+public:
+	punto()
+	{ x=0; y=0; }
+	
+	void setX(int a)
+	{ x=a; }
+	void setY(int b)
+	{ y=b; }
+	int getX()
+	{ return x; }
+	int getY()
+	{ return y; }
+
+	void leer()	{
+	  int x,y;
+	  cout<<"X="; cin>>x;
+	  setX(x);
+	  cout<<"Y="; cin>>y;
+	  setY(y); cout<<endl;
+	}
+
+	void mostrar()
+	{
+	 cout<<"Punto ";
+	 cout<<"X="<<x;
+	 cout<<"Y="<<y<<endl;
+	}
+	double distancia(punto p1);
+};
+
+
+double distancia(punto p1,punto p2)
+{
+   int a=(p2.getX()-p1.getX());
+   int b=(p2.getY()-p1.getY());
+   return sqrtf(a*a+b*b);
+}
+//AGREGACION DE RECTA
+#include "stdafx.h"
+#include "recta.h"
+void main()
+{
+	recta r1;
+	r1.leer();
+	r1.mostrar ();
+	if (r1.horizontal())
+		cout<<"Recta horizontal";
+	else
+		cout<<"No es  horizontal";
+
+}

@@ -1,0 +1,219 @@
+//NumeroGrande.h
+#include "vector.h"
+class numeroG:public vector
+{
+public:
+	void sumar (numeroG N1, numeroG N2);
+};
+
+void numeroG::sumar (numeroG N1, numeroG N2)
+{
+	int i =N1.getDim()-1;
+	int j =N2.getDim()-1;
+	int acarreo =0;
+	while ( i>=0 && j>=0)
+	{
+		int s=N1.getElem (i)+N2.getElem(j)+acarreo;
+		int digito =s%10;
+		acarreo =s/10;
+		insertarPri (digito);
+		i=i-1;
+		j=j-1;
+	}
+	while ( i>=0 )
+	{
+		int s=N1.getElem (i)+acarreo;
+		int digito =s%10;
+		acarreo =s/10;
+		insertarPri (digito);
+		i=i-1;
+	}
+	while (j>=0)
+	{
+		int s=N2.getElem(j)+acarreo;
+		int digito =s%10;
+		acarreo =s/10;
+		insertarPri (digito);
+		j=j-1;
+	}
+}
+
+
+
+
+
+
+//vector.h
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+
+using namespace std;
+
+typedef int tipoElem;
+const int MAX=50;
+
+class vector
+{
+protected:
+   tipoElem v[MAX];
+   int n;
+
+public:
+   vector(){
+	  n=0;	  
+   }
+
+void setElem(tipoElem x,int p){
+   v[p]=x;
+}
+
+int getElem(int p){
+  return v[p];
+}
+
+void setDim(int d){
+  n=d;
+}
+
+int getDim(){
+  return n;
+}
+
+void leer();
+void imprimir();
+bool vacio()
+{ return n==0; }
+
+bool lleno()
+{ return n==MAX; }
+void eliminarUlt(int p)
+{ eliminar(n-1); }
+
+void insertar(tipoElem x,int p);
+void insertarUlt(tipoElem x)
+{ insertar(x,n); }
+
+void insertarPri(tipoElem x)
+{ insertar(x,0); }
+
+void eliminar(int p);
+
+void eliminarUlt()
+{ eliminar(n-1); }
+
+void eliminarPri()
+{ eliminar(0); }
+
+void eliminarRepetidos();
+void eliminarNoRepetidos();
+
+int cantVeces(int x){
+	int c=0,i=0;
+	while(i < n){
+	  if(v[i]==x)
+		  c=c + 1;
+	 i++;
+	}
+   return c;
+}
+
+}; //end class
+
+void vector::leer()
+{
+	int m;
+	cout<<"Cantidad elementos:";
+	cin>>m; int x;
+	setDim(m);
+	for(int i=0;i<m;i++){
+	  cout<<"Elem:"; cin>>x;
+	  setElem(x,i);
+	}
+}
+
+void vector::imprimir()
+{
+	for(int i=0;i<getDim();i++) {
+	  cout<<getElem(i)<<"  ";
+	}
+	cout<<endl;
+}
+
+void vector::insertar(tipoElem x, int p){
+  if(p<0 || p > n) {	  
+	  cout<<"Posicion no valida...!!!";
+	  return ;
+  } 
+  if(lleno()){
+     cout<<"Vector lleno...!!!";
+	 return ;
+  }	 
+	int k=n-1;
+	while(k>=p){
+	   v[k+1]=v[k];
+	   k--;
+	}
+	 v[p]=x;
+	 n=n + 1;	
+}
+
+void vector::eliminar(int p){
+  if(p<0 || p >= n) {	  
+	  cout<<"Posicion no valida...!!!";
+	  return ;
+  } 
+  if(vacio()){
+     cout<<"Vector vacio...!!!";
+	 return ;
+  }	 
+	int k=p + 1;
+	while(k < n){
+	   v[k-1]=v[k];
+	   k++;
+	}	 
+	 n=n - 1;	
+}
+
+void vector::eliminarRepetidos(){
+	for(int i=0;i<n;i++){
+	 int j=i+1;
+	 while(j < n){
+	   if(v[i]==v[j])
+		   eliminar(j);
+	   else
+		   j=j + 1;
+	 }
+	}
+}
+
+void vector::eliminarNoRepetidos(){
+	int i=0;
+	while(i < n){
+	 if(cantVeces(v[i])==1)
+	   eliminar(i);
+	 else
+	   i=i + 1;
+	}
+}
+
+
+
+
+//NumeroGrande
+#include "stdafx.h"
+#include "NumeroGrande.h"
+
+void main ()
+{
+	numeroG N1,N2,N3;
+	N1.leer();
+	N2.leer();
+	N3.sumar(N1,N2);
+	N3.imprimir();
+
+}
+
+
+
+

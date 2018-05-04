@@ -1,0 +1,146 @@
+#include"stdafx.h"
+#include"figura.h"
+
+
+class cuadrado:protected figura 
+{
+private: 
+	float alto;
+	float ancho;
+public: 
+	void setAlto(float a) 
+	{ 
+		alto=a; 
+	} 
+	void setAncho(float a) 
+	{ 
+		ancho=a; 
+	} 
+	float getAlto() 	{ 
+		return alto; 
+	} 
+	float getAncho() 	{ 
+		return ancho; 
+	}
+	void leer() 
+	{ 
+		figura::leer(); 
+		cout<<"INGRESE EL ALTO DEL CUADRADO: "; 
+		cin>>alto; 
+		cout<<"INGRESE EL ANCHO DEL CUADRADO: "; 
+		cin>>ancho; 
+	} 
+	void mostrar() 
+	{ 
+		figura::mostrar(); 
+		cout<<"ALTO: "<<alto; 
+		cout<<"ANCHO: "<<ancho;
+	} 
+	float calcularArea(){
+	return ancho*alto;}
+}; 
+
+
+
+
+
+
+#include"stdafx.h"
+#include"stdlib.h"
+#include"stdio.h"
+#include"conio.h"
+#include<iostream>
+
+using namespace std;
+
+class figura{
+private:
+	int nro;
+	char color[40];
+public:
+	void setNro(int n){
+		nro=n;
+	}
+	void setColor(char *c){
+		color[0]='\0';
+		strcat(color,c);
+	}
+	int getNro(){
+		return nro;
+	}
+	char*getColor(){
+		return color;
+	}
+	void leer();
+	void mostrar();
+};
+void figura::leer(){
+	char c[40];
+	int n;
+	cout<<"ingrese numero de figura"<<endl;
+	cin>>n;
+	cout<<"ingrese color de la figura"<<endl;
+	cin>>c;
+}
+void figura::mostrar(){
+	cout<<"el nro de la figura "<<nro<<" y su color es "<<color<<endl;
+}
+
+
+#include"stdafx.h"
+#include"figura.h"
+
+
+class circulo:protected figura 
+{
+private: 
+	float radio;
+public: 
+	void setRadio(float a) 
+	{ 
+		radio=a; 
+	} 
+	float getRadio() 	{ 
+		return radio; 
+	} 
+	void leer() 
+	{ 
+		figura::leer(); 
+		cout<<"INGRESE EL RADIO DEL CIRCULO: "; 
+		cin>>radio; 
+	} 
+	void mostrar() 
+	{ 
+		figura::mostrar(); 
+		cout<<"radio: "<<radio; 
+	} 
+	float calcularArea(){
+	return (3.14*radio*radio);}
+}; 
+
+
+
+
+#include"stdafx.h"
+#include"circulo.h"
+#include"cuadrado.h"
+
+
+void main(){
+	cuadrado f1;
+	circulo f2;
+	float cir,cua;
+	cout<<"ingrese datos del circulo"<<endl;
+	f1.leer();
+	f1.mostrar();
+	cir=f1.calcularArea();
+	cout<<"ingrese datos del cuadrado"<<endl;
+	f2.leer();
+	f2.mostrar();
+	cua=f2.calcularArea();
+	cout<<"el area del circulo es "<<cir<<endl;
+	cout<<"el area del cuadrado es "<<cua<<endl;
+	getch();
+}
+
+
